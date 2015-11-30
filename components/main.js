@@ -20,8 +20,8 @@ class Main extends React.Component {
 
   onDateClick() {
     let none = () => {};
-    NativeModules.DateAndroid.showTimepicker(none, (hour, minute) => {
-      let message = `Time picked - ${hour}:${minute}`;
+    NativeModules.DateAndroid.showDatepicker(none, (year, month, day) => {
+      let message = `Date picked - ${year}/${month}/${day}`;
       ToastAndroid.show(message, ToastAndroid.SHORT);
     });
   }
