@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native run-android"
   },
   "dependencies": {
-    "react-native": "^0.15.0"
+    "react-native": "^0.15.0",
+    "react-native-date": "^1.0.2"
   }
 }
