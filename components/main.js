@@ -6,25 +6,40 @@ let styles = require('./styles');
 let {
   Text,
   View,
+  ToastAndroid,
+  NativeModules,
   TouchableNativeFeedback,
-  ToastAndroid
 } = React;
 
 class Main extends React.Component {
-  onClick() {
+
+  onNavigateClick(id) {
     ToastAndroid.show('Switching view..', ToastAndroid.SHORT);
-    this.props.navigator.push({id: 1});
+    this.props.navigator.push({ id });
+  }
+
+  onDateClick() {
+    let none = () => {};
+    NativeModules.DateAndroid.showTimepicker(none, (hour, minute) => {
+      let message = `Time picked - ${hour}:${minute}`;
+      ToastAndroid.show(message, ToastAndroid.SHORT);
+    });
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          This is the meain component.
+          This is the MAIN component.
         </Text>
-        <TouchableNativeFeedback onPress={this.onClick.bind(this)}>
+        <TouchableNativeFeedback onPress={this.onNavigateClick.bind(this, 1)}>
           <View>
             <Text>next view..</Text>
+          </View>
+        </TouchableNativeFeedback>
+        <TouchableNativeFeedback onPress={this.onDateClick.bind(this)}>
+          <View>
+            <Text>pick a date..</Text>
           </View>
         </TouchableNativeFeedback>
       </View>
